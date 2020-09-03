@@ -36,7 +36,7 @@ function Mover(origin, target){
     this.mass += 1.0;
 
     //The radius is affected by the mass;
-    this.r += this.mass * 2;
+    this.r += this.mass * 4;
 
   }
 

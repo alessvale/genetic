@@ -2,7 +2,7 @@
 const NUM_PARENTS = 100;
 
 let system;
-let obst;
+let obsts;
 let origin;
 let target;
 let gen_count = 0;
@@ -22,17 +22,21 @@ function setup(){
   system.init();
 
   //Initialize the obtacle;
-  obst = new Mover( new p5.Vector(width * 0.5, height * 0.5), new p5.Vector(0.0, 0.0));
-  obst.stuck = true;
-  obst.r = 300;
+  obsts = [];
+  obsts.push(new Mover( new p5.Vector(width * 0.2, height * random(0.3, 0.6)), new p5.Vector(0.0, 0.0)));
+  obsts.push(new Mover( new p5.Vector(width * 0.8, height * random(0.3, 0.6)), new p5.Vector(0.0, 0.0)));
+  obsts[0].stuck = true;
+  obsts[0].r = random(200, 400);
+  obsts[1].stuck = true;
+  obsts[1].r = random(200, 400);
 
 }
 
 function draw(){
+
   background(255);
 
   //Displaying obstacle, target and basic stats;
-
   let disp1 = "Generation: " + gen_count;
   let disp2 = "Stuck: " + stuck_count + "/" + system.num;
   fill(0);
@@ -40,14 +44,17 @@ function draw(){
   textFont('Abel');
   text(disp1, 10, 30);
   text(disp2, 10, 60);
+  for (let i = 0; i < obsts.length; i++){
+    let obst = obsts[i];
   fill(100, 149, 237);
   ellipse(obst.pos.x, obst.pos.y, obst.r, obst.r);
+}
   fill(120,100,237);
   ellipse(target.x, target.y, 50, 50);
 
   //Halt the simulation after stop_count steps;
   if (count < stop_count){
-  system.update(obst);
+  system.update(obsts);
   count += 1;
 }
 else {

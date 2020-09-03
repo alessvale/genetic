@@ -44,7 +44,9 @@ function System(origin, target){
   }
 
   //Update movers;
-  this.update = function(obst){
+  this.update = function(obsts){
+    for (let j = 0; j < obsts.length; j++){
+      let obst = obsts[j];
     for (let i = 0; i < this.num; i++){
       let m = this.movers[i];
       if (!m.stuck){
@@ -53,6 +55,7 @@ function System(origin, target){
          stuck_count += 1;
        }
        }
+     }
     }
 
 
@@ -68,7 +71,9 @@ function System(origin, target){
   this.display = function(){
     for (let i = 0; i < this.num; i++){
       let m = this.movers[i];
+
       m.display();
+
     }
   }
 }
