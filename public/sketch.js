@@ -15,13 +15,12 @@ function setup(){
   background(255);
 
   //Choose origin and target for the movers;
-
   origin = new p5.Vector(width * 0.5, height * 0.9);
-  target = new p5.Vector(width * 0.5, height * 0.1);
+  target = new p5.Vector(width * random(0.3, 0.6), height * 0.1);
   system = new System(origin, target);
   system.init();
 
-  //Initialize the obtacle;
+  //Initialize the obtacles;
   obsts = [];
   obsts.push(new Mover( new p5.Vector(width * 0.2, height * random(0.3, 0.6)), new p5.Vector(0.0, 0.0)));
   obsts.push(new Mover( new p5.Vector(width * 0.8, height * random(0.3, 0.6)), new p5.Vector(0.0, 0.0)));
@@ -49,7 +48,7 @@ function draw(){
   fill(100, 149, 237);
   ellipse(obst.pos.x, obst.pos.y, obst.r, obst.r);
 }
-  fill(120,100,237);
+  fill(color('#9fd822'));
   ellipse(target.x, target.y, 50, 50);
 
   //Halt the simulation after stop_count steps;
